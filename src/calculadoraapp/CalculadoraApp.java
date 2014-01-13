@@ -44,12 +44,7 @@ public class CalculadoraApp {
         System.out.println("Escribe el operador y apreta la tecla \"enter\":");
         recojerTeclas(2);
         System.out.println();
-        System.out.println("Escribe el segundo número y apreta la tecla \"enter\":");
-        recojerTeclas(3);
-        System.out.println();
-        System.out.println();
-        llamarMetOperaciones();
-        System.out.println("El resultado es: "+resultado);
+        operar();
     }
     public static void recojerTeclas(int ordenTecla){
         switch(ordenTecla){
@@ -61,6 +56,23 @@ public class CalculadoraApp {
                 break;
             case 3:
                 num2 = inScanner.nextInt();
+                break;
+            case 0:
+                llamarMetOperaciones();
+                num1 = 0;
+                num2 = 0;
+                operador = null;
+                
+                operador = inScanner.next();
+                if(operador.equals("=")){
+                    System.out.println();
+                    System.out.println("El resultado es: "+resultado);
+                    System.out.println();
+                    System.out.println("Calculadora apagada");
+                }else{
+                    num1 = resultado;
+                    operar();
+                }
                 break;
         }
     }
@@ -92,5 +104,11 @@ public class CalculadoraApp {
     public static double division(){
         return num1 / num2;
     }
-    
+    public static void operar(){
+        System.out.println("Escribe el segundo número y apreta la tecla \"enter\":");
+        recojerTeclas(3);
+        System.out.println();
+        System.out.println("Escribe un operador o el símbolo \"=\" y apreta la tecla \"enter\":");
+        recojerTeclas(0);
+    }
 }
